@@ -188,11 +188,6 @@ Upload these files to your AI platform's knowledge base:
 2. Paste instructions + Section 11 content in instructions field
 3. Upload dossier or paste contents
 
-### Poe
-1. Create Bot
-2. Paste Section 11 as System Prompt
-3. Upload dossier in Knowledge Base
-
 ---
 
 ## Testing Your Setup
@@ -221,32 +216,17 @@ After configuration, test with:
 ## Troubleshooting
 
 ### AI asks for data instead of fetching
-- Check that web search/browsing is enabled for your platform
-- Verify your JSON URL is correct and publicly accessible
-- Try pasting the URL directly in chat to trigger fetch
+- Verify web search/browsing is enabled for your platform
+- Check your JSON URL is correct and publicly accessible
 
-### Data appears stale (wrong date)
-- Some platforms cache web fetches (Claude, Grok especially)
-- The `?date=` parameter in the instructions helps bust cache
-- If still stale, manually provide URL with today's date: `...latest.json?date=2026-01-23`
+### Data still appears stale after cache-bust
+- Try a fresh conversation (some platforms cache per-session)
+- Manually append a different query param: `...latest.json?v=2`
 
-### AI adds "(GitHub)" citations
-- Ensure OUTPUT FORMAT line is in your instructions
-- If persists, add: "NEVER include (GitHub) or source markers"
-
-### Responses missing fields
-- Check that the session details MUST include line is present
-- Verify Section 11.md is uploaded and accessible
-
-### AI recommends unnecessary recovery
-- TSB -10 to -30 is normal during consistent training
-- Recovery only warranted when multiple triggers present (HRV ↓, RHR ↑, Feel ≥4)
-- If persists, emphasize in instructions: "TSB alone does not trigger recovery recommendations"
-
-### Data appears incorrect
-- Check your sync workflow is running
-- Verify `last_updated` timestamp in JSON
-- AI should flag stale data (>24h) per Step 6 of validation checklist
+### Sync workflow not updating JSON
+- Check GitHub Actions ran successfully
+- Verify Intervals.icu API key is valid
+- See [examples/json-auto-sync/SETUP.md](examples/json-auto-sync/SETUP.md)
 
 ---
 
