@@ -151,6 +151,9 @@ Upload these files to your AI platform's knowledge base:
 2. Paste instructions + Section 11 content in instructions field
 3. Upload dossier or paste contents
 
+### OpenClaw (formerly ClawdBot/MoltBot)
+Section 11 works well with [OpenClaw](https://github.com/openclaw/openclaw). The combination of OpenClaw's persistent memory + autonomous execution + Section 11's structured validation makes for a capable coaching setup.
+
 ---
 
 ## Testing Your Setup
