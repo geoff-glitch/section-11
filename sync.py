@@ -506,3 +506,22 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# --- ADD THIS TO THE BOTTOM OF YOUR sync.py ---
+
+# 1. Reuse your existing credentials
+# (Make sure these variable names match what's at the top of your script)
+AUTH = ('API_KEY', API_KEY) 
+
+print("Updating latest-workout.json...")
+activity_url = f"https://intervals.icu/api/v1/athlete/{ATHLETE_ID}/activities?limit=1"
+activity_res = requests.get(activity_url, auth=AUTH)
+
+if activity_res.status_code == 200:
+    activities = activity_res.json()
+    if activities:
+        with open('latest-workout.json', 'w') as f:
+            json.dump(activities[0], f, indent=4)
+        print("Latest workout mirrored successfully.")
+else:
+    print(f"Workout sync failed: {activity_res.status_code}")
