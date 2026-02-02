@@ -42,12 +42,22 @@ class IntervalsSync:
         return response.json()
 
     def collect_latest_workout(self) -> Dict:
-        """Fetch the single most recent activity for detailed analysis"""
-        print("Fetching latest single workout...")
-        # Get list of activities, limit to 1
-        activities = self._intervals_get("activities", {"limit": 1})
-        if activities:
-            return activities[0]
+        """Fetch the single most recent activity, regardless of how long ago it was"""
+        print("Fetching the absolute latest workout...")
+        
+        # We use a large 'limit' but only take the first one, 
+        # and we don't specify dates to ensure we find the most recent entry in history.
+        try:
+            # Most stable way to get 'the last one' across API versions
+            activities = self._intervals_get("activities", {"limit": 1, "order": "desc"})
+            
+            if activities and isinstance(activities, list):
+                return activities[0]
+            elif isinstance(activities, dict): # Handle cases where API returns a single object
+                return activities
+        except Exception as e:
+            print(f"⚠️ Could not fetch latest workout: {e}")
+            
         return {}
     
     def collect_training_data(self, days_back: int = 7, anonymize: bool = False) -> Dict:
