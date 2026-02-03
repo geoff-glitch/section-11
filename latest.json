@@ -3,18 +3,18 @@
     "instruction_for_ai": "DO NOT calculate totals from individual activities. Use pre-calculated values.",
     "data_period": "Last 7 days",
     "quick_stats": {
-      "total_training_hours": 6.49,
-      "total_activities": 4,
-      "total_tss": 354
+      "total_training_hours": 7.53,
+      "total_activities": 5,
+      "total_tss": 429
     }
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-02-03T07:33:35.841744",
+    "last_updated": "2026-02-03T08:35:32.111097",
     "data_range_days": 7
   },
   "summary": {
-    "total_activities": 4
+    "total_activities": 5
   },
   "current_status": {
     "fitness": {
@@ -36,6 +36,19 @@
   "recent_activities": [
     {
       "id": "activity_1",
+      "date": "2026-02-03T16:59:38",
+      "type": "VirtualRide",
+      "name": "Indoor Cycling",
+      "duration_hours": 1.04,
+      "distance_km": 0.0,
+      "tss": 75,
+      "avg_power": null,
+      "normalized_power": 213,
+      "avg_hr": null,
+      "decoupling": null
+    },
+    {
+      "id": "activity_2",
       "date": "2026-02-01T14:19:02",
       "type": "VirtualRide",
       "name": "MyWhoosh - Mount Pleasant",
@@ -48,7 +61,7 @@
       "decoupling": null
     },
     {
-      "id": "activity_2",
+      "id": "activity_3",
       "date": "2026-01-31T07:07:18",
       "type": "Ride",
       "name": "Training Session",
@@ -61,7 +74,7 @@
       "decoupling": null
     },
     {
-      "id": "activity_3",
+      "id": "activity_4",
       "date": "2026-01-29T15:22:36",
       "type": "VirtualRide",
       "name": "Indoor Cycling",
@@ -74,7 +87,7 @@
       "decoupling": null
     },
     {
-      "id": "activity_4",
+      "id": "activity_5",
       "date": "2026-01-28T16:41:52",
       "type": "VirtualRide",
       "name": "Indoor Cycling",
@@ -126,6 +139,6 @@
   ],
   "planned_workouts": [],
   "weekly_summary": {
-    "activities_count": 4
+    "activities_count": 5
   }
 }
