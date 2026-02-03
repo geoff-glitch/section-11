@@ -41,29 +41,14 @@ class IntervalsSync:
         response.raise_for_status()
         return response.json()
 
-    def collect_latest_workout(self) -> Dict:
-        """Fetch the absolute latest workout and ensure we get real data, not nulls"""
-        print("Fetching the absolute latest workout...")
+   def collect_latest_workout(self) -> Dict:
+        import time
+        # Adding a timestamp to the request params forces Intervals.icu to give us fresh data
+        params = {"limit": 1, "order": "desc", "_cb": int(time.time())}
         try:
-            # Use desc to get the newest first
-            activities = self._intervals_get("activities", {"limit": 5, "order": "desc"})
-            
-            if not activities or not isinstance(activities, list):
-                return {}
-
-            # Pick the first one that has actual power data (to avoid 'processing' ghosts)
-            for act in activities:
-                # Check if it has the core data we need
-                pwr = act.get("icu_average_watts") or act.get("average_watts")
-                if pwr is not None:
-                    print(f"✅ Found processed activity: {act.get('name')}")
-                    return act
-            
-            # Fallback to the very first one if none are 'processed' yet
-            return activities[0]
-
-        except Exception as e:
-            print(f"⚠️ Could not fetch latest workout: {e}")
+            activities = self._intervals_get("activities", params)
+            return activities[0] if activities else {}
+        except:
             return {}
     
     def collect_training_data(self, days_back: int = 7, anonymize: bool = False) -> Dict:
@@ -241,18 +226,26 @@ def main():
     sync = IntervalsSync(athlete_id, intervals_key, github_token, github_repo)
     
     # 1. Sync Wellness/Summary Data
+    print("Step 1: Syncing Summary Data...")
     data = sync.collect_training_data(days_back=args.days, anonymize=args.anonymize)
     
     # 2. Sync Latest Single Workout
+    print("Step 2: Syncing Detailed Workout...")
     latest_workout = sync.collect_latest_workout()
     
     if args.output:
         sync.save_to_file(data, "latest.json")
         sync.save_to_file(latest_workout, "latest-workout.json")
     else:
-        sync.publish_to_github(data, "latest.json")
-        sync.publish_to_github(latest_workout, "latest-workout.json")
-        print("\n✅ Successfully updated latest.json and latest-workout.json on GitHub")
-
-if __name__ == "__main__":
-    main()
+        # We add a timestamp to the commit message to force visibility in GitHub
+        now_ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        url_summary = sync.publish_to_github(data, "latest.json", f"Summary Update {now_ts}")
+        print(f"✅ Summary synced: {url_summary}")
+        
+        # If latest_workout is empty, the script will now print a warning
+        if latest_workout and latest_workout.get('id'):
+            url_workout = sync.publish_to_github(latest_workout, "latest-workout.json", f"Workout Update {latest_workout.get('id')} - {now_ts}")
+            print(f"✅ Workout synced: {url_workout}")
+        else:
+            print("⚠️ No valid latest workout found to sync.")
