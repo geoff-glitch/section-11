@@ -41,16 +41,30 @@ class IntervalsSync:
         response.raise_for_status()
         return response.json()
 
-   def collect_latest_workout(self) -> Dict:
+    def collect_latest_workout(self) -> Dict:
+        """Fetch the absolute latest workout with cache-busting to ensure fresh data"""
         import time
-        # Adding a timestamp to the request params forces Intervals.icu to give us fresh data
-        params = {"limit": 1, "order": "desc", "_cb": int(time.time())}
+        print("Fetching the absolute latest workout...")
+        
+        params = {
+            "limit": 1, 
+            "order": "desc", 
+            "_cb": int(time.time())
+        }
+        
         try:
             activities = self._intervals_get("activities", params)
-            return activities[0] if activities else {}
-        except:
-            return {}
-    
+            if activities and isinstance(activities, list):
+                act = activities[0]
+                print(f"✅ Found latest activity: {act.get('name')} (ID: {act.get('id')})")
+                return act
+            elif isinstance(activities, dict):
+                return activities
+        except Exception as e:
+            print(f"⚠️ Could not fetch latest workout: {e}")
+            
+        return {}
+
     def collect_training_data(self, days_back: int = 7, anonymize: bool = False) -> Dict:
         """Collect all training data for LLM analysis"""
         oldest = (datetime.now() - timedelta(days=days_back - 1)).strftime("%Y-%m-%d")
