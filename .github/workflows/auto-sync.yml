@@ -16,6 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      # Added to ensure we are working with fresh files
+      - name: Setup Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git pull origin main
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -32,7 +39,6 @@ jobs:
             exit 1
           fi
           echo "✅ sync.py found"
-          ls -lh sync.py
       
       - name: Run sync
         env:
@@ -42,42 +48,27 @@ jobs:
           GITHUB_REPO: ${{ github.repository }}
         run: |
           echo "🚀 STARTING PYTHON SYNC SCRIPT..."
-          # Running with -u forces unbuffered output so you see logs in real-time
+          # We use --output to force local file creation for both files
           python -u sync.py \
             --athlete-id "$ATHLETE_ID" \
             --intervals-key "$INTERVALS_KEY" \
             --github-token "$GITHUB_TOKEN" \
             --github-repo "$GITHUB_REPO" \
-            --days 7 2>&1
+            --days 7 \
+            --output latest.json 2>&1
       
-      - name: Verify JSON Files Created
-        run: |
-          if [ -f latest.json ]; then
-            echo "✅ latest.json updated ($(stat -c %y latest.json))"
-          else
-            echo "❌ ERROR: latest.json missing after run!"
-          fi
-          
-          if [ -f latest-workout.json ]; then
-            echo "✅ latest-workout.json updated ($(stat -c %y latest-workout.json))"
-          else
-            echo "⚠️ latest-workout.json not found - check Intervals.icu processing status"
-          fi
-
       - name: Commit and Push Changes
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          
-          # Pull latest to avoid conflicts
-          git pull --rebase origin main
-          
+          # Add specifically the two files we care about
           git add latest.json latest-workout.json
           
+          # Debug: show us what changed
+          git status
+          
           if ! git diff --staged --quiet; then
-            git commit -m "Sync: Latest training data - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            git push
-            echo "✅ Files pushed to GitHub"
+            git commit -m "Sync: Detailed Workout Data - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git push origin main
+            echo "✅ SUCCESS: Files pushed to GitHub"
           else
-            echo "⏭️ No changes in data - skipping push"
+            echo "⏭️ No changes in data - nothing to push"
           fi
