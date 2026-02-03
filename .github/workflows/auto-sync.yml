@@ -31,7 +31,8 @@ jobs:
             ls -la
             exit 1
           fi
-          echo "✅ sync.py found (${$(wc -c < sync.py)} bytes)"
+          echo "✅ sync.py found"
+          ls -lh sync.py
       
       - name: Run sync
         env:
