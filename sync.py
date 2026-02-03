@@ -39,19 +39,24 @@ class IntervalsSync:
 
     def collect_latest_workout(self) -> Dict:
         print("Fetching latest workout from Intervals...")
-        params = {"limit": 1, "order": "desc", "_cb": int(time.time())}
+        # Get the last 2 days to ensure we catch today's ride
+        oldest = (datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d")
         try:
-            activities = self._intervals_get("activities", params)
+            activities = self._intervals_get("activities", {"oldest": oldest})
             if activities and isinstance(activities, list):
-                print(f"✅ Found: {activities[0].get('name')}")
-                return activities[0]
+                # Sort by start date to get the absolute latest
+                activities.sort(key=lambda x: x.get('start_date_local', ''), reverse=True)
+                act = activities[0]
+                print(f"✅ Found: {act.get('name')} (ID: {act.get('id')})")
+                return act
         except Exception as e:
             print(f"⚠️ Workout fetch failed: {e}")
         return {}
 
     def collect_summary(self, days=7):
         print(f"Fetching {days} days of summary data...")
-        oldest = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
+        # Use a slightly larger window to be safe
+        oldest = (datetime.now() - timedelta(days=days+1)).strftime("%Y-%m-%d")
         return self._intervals_get("activities", {"oldest": oldest})
 
 def main():
