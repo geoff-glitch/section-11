@@ -178,42 +178,48 @@ class IntervalsSync:
     def _compute_activity_summary(self, activities: List[Dict], days_back: int = 7) -> Dict:
         return {"total_activities": len(activities)}
 
-    def publish_to_github(self, data: Dict, filepath: str = "latest.json", 
-                          commit_message: str = None) -> str:
-        if not self.github_token or not self.github_repo:
-            raise ValueError("GitHub token and repo required")
+def publish_to_github(self, data: Dict, path: str, message: str) -> str:
+        import base64
+        import json
         
-        if not commit_message:
-            commit_message = f"Update {filepath} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        # 1. Convert data to JSON string
+        new_content = json.dumps(data, indent=2)
         
+        # 2. Get the current file SHA (Required by GitHub API for updates)
+        sha = None
         headers = {"Authorization": f"token {self.github_token}", "Accept": "application/vnd.github+json"}
-        url = f"{self.GITHUB_API_URL}/repos/{self.github_repo}/contents/{filepath}"
+        url = f"https://api.github.com/repos/{self.github_repo}/contents/{path}"
         
-        current_sha = None
         try:
-            response = requests.get(url, headers=headers)
-            if response.status_code == 200:
-                current_sha = response.json()["sha"]
+            resp = requests.get(url, headers=headers)
+            if resp.status_code == 200:
+                sha = resp.json().get("sha")
+                print(f"🔄 Updating existing file: {path} (SHA: {sha[:6]}...)")
+            else:
+                print(f"🆕 Creating new file: {path}")
         except:
             pass
 
-        content_json = json.dumps(data, indent=2, default=str)
-        content_base64 = base64.b64encode(content_json.encode()).decode()
-        
-        payload = {"message": commit_message, "content": content_base64, "branch": "main"}
-        if current_sha:
-            payload["sha"] = current_sha
-        
+        # 3. Prepare the commit payload
+        payload = {
+            "message": message,
+            "content": base64.b64encode(new_content.encode()).decode(),
+            "branch": "main"
+        }
+        if sha:
+            payload["sha"] = sha
+
+        # 4. Push to GitHub
         response = requests.put(url, headers=headers, json=payload)
-        response.raise_for_status()
-        return f"https://raw.githubusercontent.com/{self.github_repo}/main/{filepath}"
-
-    def save_to_file(self, data: Dict, filepath: str = "latest.json"):
-        with open(filepath, 'w') as f:
-            json.dump(data, f, indent=2, default=str)
-        return filepath
-
-
+        
+        if response.status_code in [200, 201]:
+            print(f"✨ Successfully pushed {path} to GitHub.")
+            return response.json()["content"]["html_url"]
+        else:
+            print(f"❌ FAILED to push {path}. Status: {response.status_code}")
+            print(f"Reason: {response.text}")
+            return ""
+            
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--athlete-id", help="Intervals.icu athlete ID")
