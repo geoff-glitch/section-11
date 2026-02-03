@@ -10,7 +10,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-02-02T23:57:40.863960",
+    "last_updated": "2026-02-03T05:08:19.411429",
     "data_range_days": 7
   },
   "summary": {
@@ -18,10 +18,10 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 56.48,
-      "atl": 61.44,
-      "tsb": -4.96,
-      "ramp_rate": 1.33
+      "ctl": 55.15,
+      "atl": 53.26,
+      "tsb": 1.89,
+      "ramp_rate": -1.04
     },
     "thresholds": {
       "ftp": 251,
@@ -29,8 +29,8 @@
     },
     "current_metrics": {
       "weight_kg": 89.0,
-      "resting_hr": 55,
-      "hrv": 31.0
+      "resting_hr": 59,
+      "hrv": 39.0
     }
   },
   "recent_activities": [
@@ -89,11 +89,6 @@
   ],
   "wellness_data": [
     {
-      "date": "2026-01-27",
-      "hrv_rmssd": 46.0,
-      "resting_hr": 56
-    },
-    {
       "date": "2026-01-28",
       "hrv_rmssd": 38.0,
       "resting_hr": 57
@@ -122,6 +117,11 @@
       "date": "2026-02-02",
       "hrv_rmssd": 31.0,
       "resting_hr": 55
+    },
+    {
+      "date": "2026-02-03",
+      "hrv_rmssd": 39.0,
+      "resting_hr": 59
     }
   ],
   "planned_workouts": [],
