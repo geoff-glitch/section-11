@@ -11,23 +11,23 @@
   "icu_pm_ftp_watts": 205,
   "icu_ignore_power": false,
   "icu_rolling_cp": null,
-  "icu_rolling_w_prime": 22469.992,
-  "icu_rolling_p_max": 1162.367,
+  "icu_rolling_w_prime": 22447.523,
+  "icu_rolling_p_max": 1161.2046,
   "icu_rolling_ftp": 270,
   "icu_rolling_ftp_delta": 0,
-  "icu_training_load": 59,
-  "icu_atl": 64.20948,
-  "icu_ctl": 57.75097,
-  "ss_p_max": 0.0043372423,
-  "ss_w_prime": 0.21624659,
-  "ss_cp": 64.037796,
+  "icu_training_load": 53,
+  "icu_atl": 55.290295,
+  "icu_ctl": 56.174572,
+  "ss_p_max": 0.0014072817,
+  "ss_w_prime": 0.04284669,
+  "ss_cp": 60.40695,
   "paired_event_id": 92124624,
-  "icu_ftp": 251,
+  "icu_ftp": 264,
   "icu_joules": 604181,
   "icu_recording_time": 3384,
   "elapsed_time": 3385,
   "icu_weighted_avg_watts": 199,
-  "carbs_used": 161,
+  "carbs_used": 164,
   "name": "Indoor Cycling",
   "description": null,
   "start_date": "2026-02-10T07:23:44Z",
@@ -69,8 +69,8 @@
   "file_type": "fit",
   "icu_athlete_id": "i493226",
   "created": "2026-02-10T08:20:46.077+00:00",
-  "icu_sync_date": "2026-02-10T08:20:46.665+00:00",
-  "analyzed": "2026-02-10T08:20:46.665+00:00",
+  "icu_sync_date": "2026-02-10T10:01:07.140+00:00",
+  "analyzed": "2026-02-10T10:01:07.140+00:00",
   "icu_w_prime": 28900,
   "p_max": 1260,
   "threshold_pace": null,
@@ -111,7 +111,7 @@
   "interval_summary": [
     "4x 5m58s 239w"
   ],
-  "skyline_chart_bytes": "CAcSEt8E5gLzAeYC8gHlAvIB5wLsBBoJOV83XzdfNl4tIgkCBAIEAgQBBAEoAQ==",
+  "skyline_chart_bytes": "CAcSEt8E5gLzAeYC8gHlAvIB5wLsBBoJNlo1WjVaNForIgkBBAEEAQQBBAEoAQ==",
   "stream_types": [
     "time",
     "watts",
@@ -136,19 +136,19 @@
   "icu_zone_times": [
     {
       "id": "Z1",
-      "secs": 1013
+      "secs": 1517
     },
     {
       "id": "Z2",
-      "secs": 930
+      "secs": 429
     },
     {
       "id": "Z3",
-      "secs": 25
+      "secs": 493
     },
     {
       "id": "Z4",
-      "secs": 1418
+      "secs": 947
     },
     {
       "id": "Z5",
@@ -164,7 +164,7 @@
     },
     {
       "id": "SS",
-      "secs": 1178
+      "secs": 1422
     }
   ],
   "icu_hr_zone_times": [
@@ -186,8 +186,8 @@
   "icu_intervals_edited": null,
   "lock_intervals": null,
   "icu_lap_count": 1,
-  "icu_joules_above_ftp": 1960,
-  "icu_max_wbal_depletion": 743,
+  "icu_joules_above_ftp": 410,
+  "icu_max_wbal_depletion": 150,
   "icu_hrr": null,
   "icu_sync_error": null,
   "icu_color": null,
@@ -204,7 +204,7 @@
   "strava_id": null,
   "lengths": null,
   "pool_length": null,
-  "compliance": 95.16129,
+  "compliance": 85.48387,
   "coach_tick": null,
   "source": "GARMIN_CONNECT",
   "oauth_client_id": null,
@@ -212,7 +212,7 @@
   "average_altitude": null,
   "min_altitude": null,
   "max_altitude": null,
-  "power_load": 59,
+  "power_load": 53,
   "hr_load": 46,
   "pace_load": null,
   "hr_load_type": "HRSS",
@@ -239,12 +239,12 @@
   "pace": null,
   "athlete_max_hr": 192,
   "group": "9474b3f7",
-  "icu_intensity": 79.28287,
+  "icu_intensity": 75.378784,
   "icu_efficiency_factor": 1.4113475,
   "icu_power_hr": 1.2695036,
   "session_rpe": null,
   "average_stride": null,
   "icu_average_watts": 179,
   "icu_variability_index": 1.1117319,
-  "strain_score": 64.25838
+  "strain_score": 60.451206
 }
