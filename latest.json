@@ -513,7 +513,7 @@
     "icu_pm_ftp_watts": 334,
     "icu_ignore_power": false,
     "icu_rolling_cp": null,
-    "icu_rolling_w_prime": 22515.0,
+    "icu_rolling_w_prime": 20863.285,
     "icu_rolling_p_max": 1164.6952,
     "icu_rolling_ftp": 271,
     "icu_rolling_ftp_delta": 18,
