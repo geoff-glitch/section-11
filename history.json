@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-17T05:50:15.634158",
+  "generated_at": "2026-02-17T05:50:19.942178",
   "source": "Intervals.icu API",
   "sync_version": "3.4.0",
   "data_range": {
@@ -702,7 +702,7 @@
       "total_hours": 1.38,
       "total_tss": 44,
       "activity_count": 2,
-      "activity_types": "Ride, VirtualRide",
+      "activity_types": "VirtualRide, Ride",
       "ctl": 25.855825,
       "atl": 30.540623,
       "tsb": -4.7,
