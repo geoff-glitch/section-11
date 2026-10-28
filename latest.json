@@ -12,7 +12,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-10-27T22:32:04.730676",
+    "last_updated": "2026-10-28T01:46:41.478907",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.4.0"
@@ -31,7 +31,7 @@
   "history": {
     "available": true,
     "last_generated": "2026-10-12",
-    "age_days": 15,
+    "age_days": 16,
     "total_months": 20,
     "history_confidence": "high"
   },
@@ -51,39 +51,39 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 49.15,
-      "atl": 35.02,
-      "tsb": 14.13,
-      "ramp_rate": -4.22,
+      "ctl": 47.99,
+      "atl": 30.35,
+      "tsb": 17.64,
+      "ramp_rate": -4.12,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
       "ftp_outdoor": 260,
       "ftp_indoor": 264,
-      "eftp": 254.6,
+      "eftp": 254.3,
       "lthr": 174,
       "max_hr": 192,
-      "w_prime": 21748,
+      "w_prime": 21727,
       "w_prime_kj": 21.7,
-      "p_max": 1135,
+      "p_max": 1134,
       "vo2max": null
     },
     "current_metrics": {
       "weight_kg": 90.446,
-      "resting_hr": 62,
-      "hrv": 31.0,
-      "sleep_quality": 3,
-      "sleep_hours": 6.77
+      "resting_hr": 64,
+      "hrv": 24.0,
+      "sleep_quality": 4,
+      "sleep_hours": 7.1
     }
   },
   "derived_metrics": {
-    "recovery_index": 1.19,
-    "hrv_baseline_7d": 26.7,
-    "rhr_baseline_7d": 63.4,
-    "hrv_baseline_28d": 34.3,
-    "rhr_baseline_28d": 59.7,
-    "latest_hrv": 31.0,
-    "latest_rhr": 62,
+    "recovery_index": 0.88,
+    "hrv_baseline_7d": 26.9,
+    "rhr_baseline_7d": 62.9,
+    "hrv_baseline_28d": 33.9,
+    "rhr_baseline_28d": 60,
+    "latest_hrv": 24.0,
+    "latest_rhr": 64,
     "acwr": 0.55,
     "acwr_interpretation": "undertraining",
     "monotony": 0.8,
@@ -95,7 +95,7 @@
     "multi_sport_detected": false,
     "strain": 141.0,
     "stress_tolerance": 1.8,
-    "load_recovery_ratio": 1.5,
+    "load_recovery_ratio": 2.0,
     "tss_7d_total": 176.0,
     "tss_28d_total": 1286.0,
     "zone_distribution_7d": {
@@ -185,7 +185,7 @@
     },
     "phase_detected": "Recovery",
     "phase_triggers": [
-      "TSB 14.13 > +10"
+      "TSB 17.64 > +10"
     ],
     "seasonal_context": "Late Season / Transition",
     "benchmark_indoor": {
@@ -202,13 +202,13 @@
       "benchmark_percentage": null,
       "seasonal_expected": null
     },
-    "eftp": 254.6,
-    "w_prime": 21748,
+    "eftp": 254.3,
+    "w_prime": 21727,
     "w_prime_kj": 21.7,
-    "p_max": 1135,
+    "p_max": 1134,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-10-27T22:32:04.730112",
+    "calculation_timestamp": "2026-10-28T01:46:41.478400",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -378,21 +378,6 @@
   ],
   "wellness_data": [
     {
-      "date": "2026-10-21",
-      "weight_kg": null,
-      "resting_hr": 68,
-      "hrv_rmssd": 23.0,
-      "hrv_sdnn": null,
-      "sleep_hours": 6.78,
-      "sleep_quality": 4,
-      "sleep_score": 59.0,
-      "mental_energy": null,
-      "fatigue": null,
-      "soreness": null,
-      "avg_sleeping_hr": null,
-      "vo2max": null
-    },
-    {
       "date": "2026-10-22",
       "weight_kg": null,
       "resting_hr": 63,
@@ -481,6 +466,21 @@
       "soreness": null,
       "avg_sleeping_hr": null,
       "vo2max": null
+    },
+    {
+      "date": "2026-10-28",
+      "weight_kg": null,
+      "resting_hr": 64,
+      "hrv_rmssd": 24.0,
+      "hrv_sdnn": null,
+      "sleep_hours": 7.1,
+      "sleep_quality": 4,
+      "sleep_score": 52.0,
+      "mental_energy": null,
+      "fatigue": null,
+      "soreness": null,
+      "avg_sleeping_hr": null,
+      "vo2max": null
     }
   ],
   "planned_workouts": [],
@@ -488,7 +488,7 @@
     "total_training_hours": 2.59,
     "total_tss": 176,
     "activities_count": 3,
-    "avg_hrv": 26.7,
-    "avg_resting_hr": 63.4
+    "avg_hrv": 26.9,
+    "avg_resting_hr": 62.9
   }
 }
